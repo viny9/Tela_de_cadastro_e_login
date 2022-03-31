@@ -1,23 +1,33 @@
 <mat-card class="cadastro">
-    <form class="form">
-        <h1>Cadastro</h1>
-        <mat-form-field class="input">
-            <mat-label>Email</mat-label>
-            <input type="text" matInput>
-        </mat-form-field>
-        <mat-form-field class="input">
-            <mat-label>Nome de Usuário</mat-label>
-            <input type="text" matInput>
-        </mat-form-field>
-        <mat-form-field class="input">
-            <mat-label>Senha</mat-label>
-            <input type="text" matInput>
-        </mat-form-field>
-        <mat-form-field class="input">
-            <mat-label>Confirmar Senha</mat-label>
-            <input type="text" matInput>
-        </mat-form-field>
-            <button mat-stroked-button routerLink="login" class="cadastroButton">Salva</button>
-            <a routerLink="login" class="login">Já é um cliente ? </a>
-    </form>
-</mat-card>    
+  <form class="form">
+    <h1>Cadastro</h1>
+    <mat-form-field class="input">
+      <mat-label>Email</mat-label>
+      <input type="text" matInput [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{errorMessageEmail()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="input">
+      <mat-label>Nome de Usuário</mat-label>
+      <input type="text" matInput [formControl]="name" required>
+      <mat-error *ngIf="name.invalid">{{errorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="input">
+      <mat-label>Senha</mat-label>
+      <input [type]="hidePassword? 'password' : 'text'" matInput [formControl]="password" required>
+      <mat-error *ngIf="password.invalid">{{errorMessage()}}</mat-error>
+      <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+        <mat-icon class="icon">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field class="input">
+      <mat-label>Confirmar Senha</mat-label>
+      <input [type]="hidePasswordC? 'password' : 'text' " matInput [formControl]="cPassword" required>
+      <mat-error *ngIf="cPassword">{{errorMessage()}}</mat-error>
+      <button mat-icon-button matSuffix (click)="hidePasswordC = !hidePasswordC">
+        <mat-icon class="icon">{{hidePasswordC? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <button [disabled]="signIn()" mat-stroked-button routerLink="login" class="cadastroButton">Salva</button>
+    <a routerLink="login" class="login">Já é um cliente ? </a>
+  </form>
+</mat-card>

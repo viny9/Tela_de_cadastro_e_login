@@ -3,7 +3,7 @@
     position: absolute;
     left: 30%;
     top: 20%;
-    
+    background-color: rgba(0, 0, 0, 0.217);
 }
 
 .form {
@@ -40,4 +40,8 @@
 .cadastro:hover {
    color: #c7c7c7;
    text-decoration: underline;
+}
+
+.icon {
+   font-size: 25px !important;
 }

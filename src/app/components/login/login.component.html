@@ -1,0 +1,20 @@
+<mat-card class="login">
+    <form class="form">
+        <h1>Login</h1>
+        <mat-form-field class="input">
+            <mat-label>Nome de Usuário</mat-label>
+            <input type="text" matInput [formControl]="userName">
+            <mat-error *ngIf="userName.invalid">{{errorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="input">
+            <mat-label>Senha</mat-label>
+            <input [type]="hide? 'password' : 'text'" matInput [formControl]="password" required>
+            <mat-error *ngIf="password.invalid">{{errorMessage()}}</mat-error>
+            <button matSuffix mat-icon-button (click)="hide = !hide">
+                <mat-icon class="icon">{{hide? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+            <button [disabled]="login()" mat-stroked-button class="loginButton">Entrar</button>
+            <a routerLink="" class="cadastro">Não tem conta ?</a>
+    </form>
+</mat-card>    
